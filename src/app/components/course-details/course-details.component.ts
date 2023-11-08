@@ -32,4 +32,18 @@ export class CourseDetailsComponent implements OnInit {
   list() {
     this.router.navigate(['home']);
   }
+
+  deleteCourse(id: number) {
+    this.courseService.deleteCourse(id)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.list();
+        },
+        error => console.log(error));
+  }
+
+  updateCourse(id: number) {
+    this.router.navigate(['update', id]);
+  }
 }

@@ -1,60 +1,33 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root',
 })
 export class CourseService {
-  url = '/api/courses';
-  authToken: string = "";
+  url = '/gateway/core/api/courses';
 
-  headers = null;
-
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient) {
   }
 
-  // headers = new HttpHeaders({
-  //   'Authorization': `Bearer` + this.authToken
-  // });
   getCourseById(id: number): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': "Bearer " + sessionStorage.getItem('auth-user')
-    });
-    return this.http.get(`${this.url}/${id}`, {headers});
+    return this.http.get(`${this.url}/${id}`);
   }
 
   createCourse(book: Object): Observable<Object> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': "Bearer " + sessionStorage.getItem('auth-user')
-    });
-    return this.http.post(`${this.url}`, book, {headers});
+    return this.http.post(`${this.url}`, book);
   }
 
   updateCourse(id: number, value: any): Observable<Object> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': "Bearer " + sessionStorage.getItem('auth-user')
-    });
-    return this.http.put(`${this.url}/${id}`, value, {headers});
+    return this.http.put(`${this.url}/${id}`, value);
   }
 
   deleteCourse(id: number): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': "Bearer " + sessionStorage.getItem('auth-user')
-    });
-    return this.http.delete(`${this.url}/${id}`, {headers});
+    return this.http.delete(`${this.url}/${id}`);
   }
 
   getAll(): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': "Bearer " + sessionStorage.getItem('auth-user')
-    });
-    return this.http.get<any>(`${this.url}/search`, {headers})
+    return this.http.get<any>(`${this.url}/search`)
   }
 }

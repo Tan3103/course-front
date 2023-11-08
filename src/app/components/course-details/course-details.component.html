@@ -10,6 +10,9 @@
   <div>
     <label><b>Email Id: </b></label> {{course.description}}
   </div>
+
+  <button (click)="deleteCourse(course.id)" class="delete-button">Delete</button>
+  <button (click)="updateCourse(course.id)" class="update-button">Update</button>
 </div>
 
 <br>

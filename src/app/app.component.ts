@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {StorageService} from "./services/storage.service";
 import {AuthService} from "./services/auth.service";
+import {AuthGuardService} from "./services/auth-guard.service";
 
 @Component({
   selector: 'app-root',
@@ -14,35 +14,30 @@ export class AppComponent {
   showModeratorBoard = false;
   username?: string;
 
-  constructor(private storageService: StorageService, private authService: AuthService) {
+  constructor(private authGuardService: AuthGuardService, private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.storageService.isLoggedIn();
+    this.isLoggedIn = this.authGuardService.canActivate();
 
     if (this.isLoggedIn) {
-      const user = this.storageService.getUser();
-      this.roles = user.roles;
+      // const user = this.storageService.getUser();
+      // this.roles = user.roles;
 
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
-      this.username = user.username;
+      // this.username = user.username;
     }
   }
 
   logout(): void {
-    this.storageService.clean();
-    // this.authService.logout().subscribe({
-    //   next: res => {
-    //     console.log(res);
-    //     this.storageService.clean();
-    //
-    //     window.location.reload();
-    //   },
-    //   error: err => {
-    //     console.log(err);
-    //   }
-    // });
+    this.authService.logOut();
+  }
+
+  mobileMenuOpen: boolean = false;
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
   }
 }

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {map, Observable} from 'rxjs';
+import {BehaviorSubject, map, Observable, tap} from 'rxjs';
 import {Router} from "@angular/router";
 
 const AUTH_API = '/gateway/auth/';
@@ -9,7 +9,13 @@ const AUTH_API = '/gateway/auth/';
   providedIn: 'root',
 })
 export class AuthService {
+  private _userDdo = new BehaviorSubject<number>(0);
+
   constructor(private router: Router, private http: HttpClient) {
+  }
+
+  get userDdo$(): Observable<number> {
+    return this._userDdo.asObservable();
   }
 
   register(firstname: string, lastname: string, email: string, password: string): Observable<any> {
@@ -28,11 +34,12 @@ export class AuthService {
     return this.http
       .post<any>(AUTH_API + 'token', {email, password})
       .pipe(
-        map(userData => {
-          sessionStorage.setItem("username", email);
+        tap(userData => {
           let tokenStr = "Bearer " + userData.token;
+
+          sessionStorage.setItem("username", email);
           sessionStorage.setItem("token", tokenStr);
-          return userData;
+          sessionStorage.setItem("userId", userData.userId);
         })
       );
   }

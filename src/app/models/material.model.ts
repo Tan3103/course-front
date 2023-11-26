@@ -3,4 +3,5 @@ export class MaterialModel {
   title?: string;
   content?: string;
   type?: string;
+  step?: string;
 }

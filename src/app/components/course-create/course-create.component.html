@@ -1,46 +1,46 @@
-<!--<div [hidden]="submitted" class="create-employee-container">-->
-<!--  <h3>CREATE</h3>-->
-<!--  <form (ngSubmit)="onSubmit()">-->
-<!--    <div class="form-group">-->
-<!--      <label for="title">Title</label>-->
-<!--      <input type="text" class="form-control" id="title" required [(ngModel)]="course.title" name="title">-->
-<!--    </div>-->
-
-<!--    <div class="form-group">-->
-<!--      <label for="description">Description</label>-->
-<!--      <input type="text" class="form-control" id="description" required [(ngModel)]="course.description" name="description">-->
-<!--    </div>-->
-
-<!--    <button type="submit" class="submit-button">CREATE</button>-->
-<!--  </form>-->
-<!--</div>-->
-
 <form [formGroup]="courseForm">
   <div class="form-group mb-6">
     <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-    <input type="text" id="title" formControlName="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <input type="text" id="title" formControlName="title"
+           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
   </div>
   <div class="form-group">
     <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-    <input type="text" id="description" formControlName="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <input type="text" id="description" formControlName="description"
+           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
   </div>
   <div class="form-group">
     <label for="language" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Language</label>
-    <input type="text" id="language" formControlName="language" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <input type="text" id="language" formControlName="language"
+           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
   </div>
   <div class="form-group">
-    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Materials</label>
-    <div formArrayName="materialList">
-      <div *ngFor="let material of materialControls.controls; let i = index">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Module</label>
+    <div formArrayName="moduleList">
+      <div *ngFor="let module of moduleControls.controls; let i = index">
         <div [formGroupName]="i">
-          <input type="text" formControlName="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-          <input type="text" formControlName="content" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-          <input type="text" formControlName="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <input type="text" formControlName="title"
+                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <input type="text" formControlName="description"
+                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Material</label>
+          <div formArrayName="materialList">
+            <div *ngFor="let material of materialControls.controls; let j = index">
+              <div [formGroupName]="j">
+                <input type="text" formControlName="title"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <input type="text" formControlName="content"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <input type="text" formControlName="type"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              </div>
+            </div>
+            <button (click)="addMaterial()">Add Material</button>
+          </div>
         </div>
       </div>
-      <button (click)="addMaterial()">Add Material</button>
+      <button (click)="addModule()">Add Module</button>
     </div>
   </div>
-  <button type="submit" (click)="onSubmit()">Submit</button>
+  <button type="button" (click)="onSubmit()">Submit</button>
 </form>
-

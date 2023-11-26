@@ -36,8 +36,8 @@ export class HomeComponent implements OnInit {
         error => console.log(error));
   }
 
-  courseDetails(id: number) {
-    this.router.navigate(['details', id]);
+  courseDetails(id: bigint) {
+    this.router.navigate(['course', id]);
   }
 
   updateCourse(id: number) {

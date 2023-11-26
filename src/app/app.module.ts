@@ -9,10 +9,11 @@ import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {HomeComponent} from "./components/home/home.component";
 import {CourseUpdateComponent} from './components/course-update/course-update.component';
-import {CourseDetailsComponent} from './components/course-details/course-details.component';
 import {CourseCreateComponent} from './components/course-create/course-create.component';
 import {AuthInterceptor} from "./services/auth.interceptor";
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -21,17 +22,18 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     RegisterComponent,
     HomeComponent,
     CourseUpdateComponent,
-    CourseDetailsComponent,
     CourseCreateComponent,
     DropdownComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule
+  ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
